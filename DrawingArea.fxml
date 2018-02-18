@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="paint.DrawingAreaController">
+   <children>
+      <SplitPane dividerPositions="0.3467048710601719" layoutX="98.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane prefHeight="317.0" prefWidth="820.0">
+               <children>
+                  <VBox spacing="8.0">
+                     <children>
+                        <MenuBar maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#openfile" text="Open" />
+                                    <SeparatorMenuItem mnemonicParsing="false" />
+                                    <MenuItem mnemonicParsing="false" onAction="#SaveAsFilePng" text="Save As PNG" />
+                                    <MenuItem mnemonicParsing="false" onAction="#SaveAsFileXml" text="Save As XML" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                        <HBox prefHeight="45.0" prefWidth="755.0" spacing="8.0">
+                           <children>
+                              <Region prefHeight="30.0" prefWidth="154.0" />
+                              <Button fx:id="btLine" mnemonicParsing="false" onAction="#setType" text="Line" />
+                              <Button fx:id="btRectangle" mnemonicParsing="false" onAction="#setType" text="Rectangle" />
+                              <Button fx:id="btEllipse" mnemonicParsing="false" onAction="#setType" text="Ellipse" />
+                              <Button fx:id="btCircle" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#setType" text="Circle">
+                                 <opaqueInsets>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button fx:id="btSquare" mnemonicParsing="false" onAction="#setType" text="Square" />
+                              <Button mnemonicParsing="false" onAction="#setType" text="Free Hand" />
+                              <Button layoutX="476.0" layoutY="18.0" mnemonicParsing="false" onAction="#Clear" prefHeight="25.0" prefWidth="76.0" text="Clear All" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="18.0" layoutY="51.0" prefHeight="45.0" prefWidth="755.0" spacing="8.0">
+                           <children>
+                              <Region prefHeight="30.0" prefWidth="149.0" />
+                              <Button mnemonicParsing="false" onAction="#setType" text="Select" />
+                              <Button mnemonicParsing="false" onAction="#setType" text="Move" />
+                              <Button mnemonicParsing="false" onAction="#setType" text="Resize" />
+                              <Button mnemonicParsing="false" onAction="#delete" text="Delete" />
+                              <Button contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#changeColor" text="Change Color">
+                                 <opaqueInsets>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#Undo" text="undo" />
+                              <Button mnemonicParsing="false" onAction="#Redo" text="redo" />
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                        </HBox>
+                        <HBox fx:id="hbox" prefHeight="62.0" prefWidth="800.0">
+                           <children>
+                              <Region layoutX="204.0" layoutY="18.0" prefHeight="46.0" prefWidth="124.0" />
+                              <Label prefHeight="21.0" prefWidth="57.0" text="fill color:">
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                              </Label>
+                              <ColorPicker fx:id="colorPicker">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets bottom="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                              </ColorPicker>
+                              <Region prefHeight="46.0" prefWidth="141.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Region>
+                              <Label layoutX="180.0" layoutY="26.0" prefHeight="21.0" prefWidth="78.0" text="Stroke color:">
+                                 <padding>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ColorPicker fx:id="colorPicker1" layoutX="392.0" layoutY="23.0">
+                                 <padding>
+                                    <Insets bottom="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </ColorPicker>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="488.0" prefWidth="798.0">
+               <children>
+                  <Canvas fx:id="canvas" height="520.0" layoutY="2.0" onMousePressed="#start" onMouseReleased="#end" width="798.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
